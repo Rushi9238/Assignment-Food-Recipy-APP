@@ -36,12 +36,12 @@ const Result = () => {
                         
                         <img src={ele.recipe.image} alt={ele.recipe.label} />
 
-
+                            {/* Adding the once agine */}
 
                     {/* <div className="image-container">
                         <img src={ele.recipe.image} alt={ele.recipe.label} />
 
-
+                                
                     </div>
                     <div className="lowercontainer">
                         <h4>{ele.recipe.label}</h4>
