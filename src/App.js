@@ -1,24 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react'
+import '../src/CSS_files/App.css';
+import Search from './Components/Search';
+import { createContext } from 'react';
+import Result from './Components/Result';
+
+export const Data = createContext();
 
 function App() {
+
+  const [search, setSearch] = useState("")
+  const [ApiResult, SetApiresult] = useState("")
+
+  useEffect(() => {
+
+    call()
+
+  }, [search])
+
+  // const url=
+
+  async function call() {
+    const res = await fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=${search}&app_id=d0d7bc25&app_key=8b2bff8bc01f609505a0f1b701111946`)
+
+    // console.log( await res.json());
+    const result = await res.json()
+    // console.log(result.hits);
+    SetApiresult(result.hits)
+
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Data.Provider value={{ search, setSearch,ApiResult, SetApiresult }}>
+        <div className="App">
+          <div className='searchdiv'>
+            <Search />
+           
+          </div>
+          <div className='showResult'>
+            <Result  />
+
+          </div>
+        </div>
+
+      </Data.Provider>
+    </>
   );
 }
 
