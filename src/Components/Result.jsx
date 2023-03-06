@@ -2,15 +2,16 @@ import React from 'react'
 import '../CSS_files/Result.css'
 import { useContext } from 'react'
 import{Data} from '../App'
-const Result = () => {
-    const {ApiResult,SetApiresult}=useContext(Data)
+const Result = ({apiresult,SetApiresult}) => {
+    // const {ApiResult,SetApiresult}=useContext(Data)
     
     return (
         
     <div className='Result'>
-        {/* // console.log(ApiResult) */}
+
+        {console.log(apiresult)}
        
-            {ApiResult.map((ele)=>{
+            {  apiresult.map((ele)=>{
                 // console.log(ele.recipe);
                 console.log(ele.recipe)
                 return <div className='cards'>
@@ -36,6 +37,9 @@ const Result = () => {
                         
                         <img src={ele.recipe.image} alt={ele.recipe.label} />
 
+                           </div>
+            })}
+
                             {/* Adding the once agine */}
 
                     {/* <div className="image-container">
@@ -53,8 +57,7 @@ const Result = () => {
                         </ol>
                     </div> */}
 
-                </div>
-            })}
+             
     </div>
    
   )

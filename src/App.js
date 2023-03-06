@@ -9,13 +9,13 @@ export const Data = createContext();
 function App() {
 
   const [search, setSearch] = useState("")
-  const [ApiResult, SetApiresult] = useState("")
+  const [apiresult, SetApiresult] = useState([])
 
   useEffect(() => {
 
     call()
 
-  }, [search])
+  },[search])
 
   // const url=
 
@@ -32,14 +32,15 @@ function App() {
 
   return (
     <>
-      <Data.Provider value={{ search, setSearch,ApiResult, SetApiresult }}>
+      <Data.Provider value={{ search, setSearch}}>
         <div className="App">
           <div className='searchdiv'>
             <Search />
            
           </div>
           <div className='showResult'>
-            <Result  />
+            <Result apiresult={apiresult}
+SetApiresult={SetApiresult}  />
 
           </div>
         </div>
